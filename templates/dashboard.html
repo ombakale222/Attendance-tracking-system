@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attendance Dashboard</title>
+</head>
+<body>
+  <h2>📊 Attendance Logs</h2>
+  <table border="1">
+    <tr><th>Employee ID</th><th>Name</th><th>Time</th></tr>
+    {% for row in records %}
+      <tr><td>{{ row[0] }}</td><td>{{ row[1] }}</td><td>{{ row[2] }}</td></tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

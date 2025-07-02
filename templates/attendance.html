@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="main-container">
+
+        <!-- Header -->
+        <div class="header">
+            Attendance System
+            <a href="{{ url_for('register') }}" class="register-btn">➕ Register User</a>
+        </div>
+
+        <!-- Status Info -->
+        <div class="status-box">
+            📅 <span id="datetime">Loading...</span><br>
+            <span id="spoof-status">🔒 Verifying Face...</span>
+        </div>
+
+        <!-- Camera Frame -->
+        <div class="camera-frame">
+            <video id="video" autoplay></video>
+            <div class="loader-ring" id="loaderRing" style="display: none;"></div>
+
+            <!-- Flash Message -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="overlay-message" id="successMessage">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                        <div id="countdown">2</div>
+                    </div>
+                    <script>
+                        let countdown = 2;
+                        const countdownEl = document.getElementById("countdown");
+                        const interval = setInterval(() => {
+                            countdown--;
+                            if (countdownEl) countdownEl.innerText = countdown;
+                            if (countdown <= 0) {
+                                clearInterval(interval);
+                                window.location.reload();
+                            }
+                        }, 1000);
+                    </script>
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- Attendance Form -->
+        <form id="captureForm" method="POST" action="{{ url_for('attendance') }}">
+            <input type="hidden" name="image_data" id="image_data">
+            <input type="hidden" name="punch_type" id="punch_type">
+
+            <div class="button-group">
+                <button type="button" class="punch-button" id="btn-in" onclick="capture('IN')" disabled>Punch IN</button>
+                <button type="button" class="punch-button" id="btn-out" onclick="capture('OUT')" disabled>Punch OUT</button>
+            </div>
+        </form>
+
+        <!-- Footer -->
+        <div class="footer-box">
+            📍 Created by om bakale
+        </div>
+
+    </div>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <!-- Load external JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

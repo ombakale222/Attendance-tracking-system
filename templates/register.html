@@ -1,0 +1,59 @@
+
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Employee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+
+    <div class="register-container">
+
+        <!-- Page Header -->
+        <div class="header">Register Employee</div>
+
+        <!-- Green Navigation Button -->
+        <a href="{{ url_for('attendance') }}" class="attendance-btn">⬅ Go to Attendance</a>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-message">
+              {% for message in messages %}
+                {{ message }}
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Registration Form -->
+        <form method="POST" enctype="multipart/form-data">
+            <label for="emp_id">Employee ID</label>
+            <input type="text" name="emp_id" required>
+
+            <label for="name">Name</label>
+            <input type="text" name="name" required>
+
+            <label for="joining_date">Joining Date</label>
+            <input type="date" name="joining_date" required>
+
+            <label for="photo">Photo</label>
+            <input type="file" name="photo" accept="image/*" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
