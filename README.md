@@ -5,8 +5,7 @@ Attendance tracking system
 [Click to watch demo](Attendance_system.mp4)
 
 ## 📦 Quick Start
-
-1. Clone the Repository & Setup
+Clone the Repository & Setup
 
 git clone https://github.com/your-repo/face-attendance-system.git
 
