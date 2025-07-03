@@ -21,20 +21,18 @@ The primary objective of this system is to build a secure attendance solution th
 The system integrates several key technologies and libraries:
 
 * **Anti-Spoofing Model:**
-    * `Silent-Face-Anti-Spoofing` (Python library/model)
+    * `Silent-Face-Anti-Spoofing` 
 * **Face Recognition & Analysis:**
     * `DeepFace` (Python library for face verification, recognition, and attribute analysis)
 * **Database Management:**
     * `SQLite` (Lightweight, file-based database for storing employee photos and attendance logs)
     * `sqlite3` (Python standard library for SQLite interaction)
-* **Data Handling (Optional):**
-    * `pandas` (For potential export of attendance logs to CSV/Excel)
 * **Webcam Interaction & Image Processing:**
     * `OpenCV` (`cv2` Python library)
 * **User Interface (Optional):**
     * `Flask` (Python web framework for a browser-based interface, if applicable)
 * **Core Language:**
-    * `Python 3.x`
+    * `Python 3.12`
 
 ## 🚀 Getting Started
 
@@ -66,7 +64,6 @@ Follow these instructions to set up and run the project locally.
     pip install --upgrade pip
     pip install -r requirements.txt
     ```
-    *(**Note:** You will need a `requirements.txt` file in your project root containing all necessary packages, e.g.: `opencv-python`, `deepface`, `pandas`, `Flask` (if used), and any specific dependencies for `Silent-Face-Anti-Spoofing`.)*
 
 ### Database Setup
 
@@ -78,9 +75,9 @@ Follow these instructions to set up and run the project locally.
 
 1.  **Start the application:**
     ```bash
-    python your_main_app_file.py
+    python app.py
     ```
-    (Replace `your_main_app_file.py` with the actual name of your main Python script, e.g., `attendance_app.py`)
+   
 
 2.  **Access the system:**
     * If using a console-based interface, observe the output in your terminal.
@@ -120,42 +117,4 @@ The system operates through a precise, sequential workflow designed to prioritiz
 6.  **Display Confirmation Message**
     * A clear, personalized message is displayed to the employee, confirming their attendance action. Examples include: "Good morning, {name} (ID: {emp_id})! Punch In Recorded." or "Good evening, {name} (ID: {emp_id})! Punch Out Recorded."
 
-## 📊 Workflow Diagram
 
-```mermaid
-graph TD
-    A[Webcam Feed (Live Video)] --> B{Run Silent-Face-Anti-Spoofing Model}
-
-    B -- FAKE Face --> C[FAKE Face Detected <br> -> Ignore / Alert]
-    B -- REAL Face --> D[REAL Face Detected <br> -> Proceed to next step]
-
-    D --> E[Capture Face Image <br> (captured_face.jpg)]
-
-    E --> F[Query SQLite DB for Stored Face Images <br> SQL: SELECT emp_id, name, photo_path FROM users]
-
-    F --> G{Loop Over Stored Images & Compare via DeepFace <br> result = DeepFace.verify(captured_face, db_img)}
-
-    G -- NO Match --> H[No Match <br> -> Reject Access <br> Show: "User not matched"]
-    G -- YES Match --> I[Get emp_id & name from DB]
-
-    I --> J{Determine Punch In/Out Status}
-
-    J -- Punch In --> K[Mark Attendance: Punch In <br> INSERT INTO attendance (...) VALUES ('Punch In')]
-    J -- Punch Out --> L[Mark Attendance: Punch Out <br> INSERT INTO attendance (...) VALUES ('Punch Out')]
-
-    K --> M[Display Message: <br> "Good morning/evening, {name} (ID: {emp_id})! <br> Punch In/Out Recorded."]
-    L --> M
-
-    style A fill:#e0f2f7,stroke:#3498db,stroke-width:2px,color:#2c3e50
-    style B fill:#d0f0c0,stroke:#27ae60,stroke-width:2px,color:#2c3e50
-    style C fill:#fce4ec,stroke:#e74c3c,stroke-width:2px,color:#2c3e50
-    style D fill:#e8f5e9,stroke:#27ae60,stroke-width:2px,color:#2c3e50
-    style E fill:#fffde7,stroke:#f1c40f,stroke-width:2px,color:#2c3e50
-    style F fill:#e3f2fd,stroke:#3498db,stroke-width:2px,color:#2c3e50
-    style G fill:#f3e5f5,stroke:#9b59b6,stroke-width:2px,color:#2c3e50
-    style H fill:#fce4ec,stroke:#e74c3c,stroke-width:2px,color:#2c3e50
-    style I fill:#f0f4c3,stroke:#8bc34a,stroke-width:2px,color:#2c3e50
-    style J fill:#cfe8ff,stroke:#66a3ff,stroke-width:2px,color:#2c3e50
-    style K fill:#d9f7be,stroke:#7cb342,stroke-width:2px,color:#2c3e50
-    style L fill:#ffe0b2,stroke:#ff9800,stroke-width:2px,color:#2c3e50
-    style M fill:#e0f2f7,stroke:#3498db,stroke-width:2px,color:#2c3e50
