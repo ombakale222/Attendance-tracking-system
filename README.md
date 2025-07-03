@@ -1,5 +1,76 @@
 # Attendance-tracking-system
 Attendance tracking system
++---------------------------------+
+|      🎥 Webcam Feed (Live)     |
++---------------------------------+
+              |
+              v
++---------------------------------+
+|🛡️ Run Silent-Face-Anti-Spoofing |
+|            Model                |
++---------------+-----------------+
+                |
++-------+-------+-------+
+| ❌ FAKE Face  | ✅ REAL Face  |
+|               |               |
+v               v               v
++-------------+ +---------------+
+|  Ignore /   | |Proceed to Next|
+|   Alert     | |     Step      |
++-------------+ +-------+-------+
+                        |
+                        v
++---------------------------------+
+|  📸 Capture Face Image          |
+|      (captured_face.jpg)        |
++---------------------------------+
+              |
+              v
++---------------------------------+
+|🗄️ Query SQLite DB for Stored   |
+|         Face Images             |
+|   (SELECT emp_id, name, photo_path) |
++---------------------------------+
+              |
+              v
++---------------------------------+
+|🔁 Loop Over Stored Images &     |
+|   Compare via DeepFace          |
+|  (DeepFace.verify(...))         |
++---------------------------------+
+              |
++-------------+-------------+
+|    ❌ NO Match           | ✅ YES Match       |
+|                          |                    |
+v                          v                    v
++--------------------------+ +------------------+
+|❌ No Match → Reject Access |🔎 Get emp_id & name |
+|  "User not matched"      |    from DB        |
++--------------------------+ +--------+---------+
+                                      |
+                                      v
++---------------------------------+
+|⏰ Determine Punch In/Out Status |
++---------------------+-----------+
+                      |
++-----------+---------+-----------+
+|  Punch In           | Punch Out           |
+|                     |                     |
+v                     v                     v
++---------------------+ +---------------------+
+|📝 Mark Attendance:  | |📝 Mark Attendance:  |
+|      Punch In       | |     Punch Out       |
++---------------------+ +----------+----------+
+                      |            |
+                      +------------+
+                                 |
+                                 v
++---------------------------------+
+|🌞 Display Message:              |
+| "Good morning/evening, {name}   |
+|  (ID: {emp_id})!                |
+|  Punch In/Out Recorded."        |
++---------------------------------+
 ## 📽 Demo Video
 
 [Click to watch demo](Attendance_system.mp4)
