@@ -29,7 +29,7 @@ The system integrates several key technologies and libraries:
     * `sqlite3` (Python standard library for SQLite interaction)
 * **Webcam Interaction & Image Processing:**
     * `OpenCV` (`cv2` Python library)
-* **User Interface (Optional):**
+* **User Interface :**
     * `Flask` (Python web framework for a browser-based interface, if applicable)
 * **Core Language:**
     * `Python 3.12`
@@ -48,7 +48,7 @@ Follow these instructions to set up and run the project locally.
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/your-repo/face-attendance-system.git](https://github.com/your-repo/face-attendance-system.git)
+    git clone [ https://github.com/ombakale222/Attendance-tracking-system]( https://github.com/ombakale222/Attendance-tracking-system)
     cd face-attendance-system
     ```
 2.  **Create and Activate Virtual Environment (Recommended):**
@@ -67,9 +67,9 @@ Follow these instructions to set up and run the project locally.
 
 ### Database Setup
 
-* Ensure you have an `employee.db` SQLite database in your project root (or configured path).
+* Ensure you have an `employee_data.db` SQLite database in your project root (or configured path).
 * This database should contain a table (e.g., `employees`) with `emp_id`, `name`, and `photo_path` columns.
-* Pre-register employee faces by storing their images in a designated folder (e.g., `employee_photos/`) and populate the `employee.db` with corresponding `emp_id`, `name`, and `photo_path` entries.
+* Pre-register employee faces by storing their images in a designated folder (e.g., `employee_photos/`) and populate the `employee_data.db` with corresponding `emp_id`, `name`, and `photo_path` entries.
 
 ### Running the System
 
