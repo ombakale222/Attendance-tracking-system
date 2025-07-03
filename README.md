@@ -40,8 +40,7 @@ Follow these instructions to set up and run the project locally.
 
 ### Prerequisites
 
-* Python 3.8+
-* `pip` (Python package installer)
+* Python 3.12
 * A webcam connected to your system.
 
 ### Installation
@@ -83,7 +82,7 @@ Follow these instructions to set up and run the project locally.
     * If using a console-based interface, observe the output in your terminal.
     * If using Flask, open your web browser and navigate to `http://127.0.0.1:5000` (or the configured address).
 
-## 💡 System Workflow (Detailed Steps)
+## 💡 System Workflow 
 
 The system operates through a precise, sequential workflow designed to prioritize anti-spoofing before proceeding to identity verification and attendance logging:
 
@@ -97,7 +96,7 @@ The system operates through a precise, sequential workflow designed to prioritiz
 
 2.  **Capture Live Face Image for Verification**
     * Once a face is confirmed as "REAL" by the anti-spoofing model, a high-quality still image of this live face is captured from the webcam feed.
-    * This image is saved temporarily (e.g., as `captured_face.jpg`).
+    * This image is saved temporarily .
 
 3.  **Query Stored Employee Photos**
     * The system connects to the `employee.db` SQLite database.
@@ -112,7 +111,7 @@ The system operates through a precise, sequential workflow designed to prioritiz
 
 5.  **Determine Punch Status & Mark Attendance**
     * Upon successful identity verification, the system checks the employee's existing attendance records for the current day to determine the appropriate action (e.g., if no entry exists, it's a "Punch In"; if a "Punch In" exists, it's a "Punch Out").
-    * The attendance record (including `emp_id`, `name`, timestamp, and "Punch In" or "Punch Out" status) is then securely stored in the SQLite `attendance` table (or exported to CSV/Excel).
+    * The attendance record (including `emp_id`, `name`, timestamp, and "Punch In" or "Punch Out" status) is then securely stored in the SQLite `attendance` table .
 
 6.  **Display Confirmation Message**
     * A clear, personalized message is displayed to the employee, confirming their attendance action. Examples include: "Good morning, {name} (ID: {emp_id})! Punch In Recorded." or "Good evening, {name} (ID: {emp_id})! Punch Out Recorded."
